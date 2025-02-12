@@ -37,6 +37,7 @@ pygame.init()
 
 WIDTH, HEIGHT = 600, 600
 BULLET_SPEED = 6
+ENEMY_BULLET_SPEED = 3
 player_health = 3
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Space Shooter")
@@ -89,27 +90,37 @@ while running:
 
     keys = pygame.key.get_pressed()
 
-    screen.blit(background, (0,0))
-    screen.blit(resized_image, (starship_x, starship_y))
+    screen.blit(background, (0,0)) # draw star background
+    screen.blit(resized_image, (starship_x, starship_y)) # draw initial spaceship location
 
     for life_image in life_list:
-        screen.blit(life, life_image["rect"].topleft)
+        screen.blit(life, life_image["rect"].topleft) # draw 3 lives for player
     
     for enemy_data in enemy_list:
-        screen.blit(resized_enemy, enemy_data["rect"].topleft)
+        screen.blit(resized_enemy, enemy_data["rect"].topleft) # draw first wave of enemy ships
 
-        if current_time - last_enemy_shot_time > ENEMY_FIRE_DELAY:
+        if current_time - last_enemy_shot_time > ENEMY_FIRE_DELAY: 
             for enemy_data in enemy_list:
                 enemy_x, enemy_y = enemy_data["rect"].midbottom
-                enemy_bullets.append(pygame.Rect(enemy_x, enemy_y, 10, 20))
+                enemy_bullets.append(pygame.Rect(enemy_x, enemy_y, 10, 20)) 
             last_enemy_shot_time = current_time
 
-    if len(enemy_list) == 0:
-        current_time = pygame.time.get_ticks()  
-        if current_time - start_time >= 3000:
+    if len(enemy_list) == 0: 
+        if current_time - last_enemy_shot_time >= 5000:
+            for enemy_data in enemy_list_two:
+                screen.blit(resized_enemy, enemy_data["rect"].topleft)
+            
+            if current_time - last_enemy_shot_time > ENEMY_FIRE_DELAY:
+                for enemy_data in enemy_list_two:
+                    enemy_x, enemy_y = enemy_data["rect"].midbottom
+                    enemy_bullets.append(pygame.Rect(enemy_x, enemy_y, 10, 20))
+            last_enemy_shot_time = current_time
+    
+
+
     
     for enemy_bullet in enemy_bullets[:]:
-        enemy_bullet.y += BULLET_SPEED  
+        enemy_bullet.y += ENEMY_BULLET_SPEED  
         if enemy_bullet.y > HEIGHT: 
             enemy_bullets.remove(enemy_bullet)
 
@@ -124,6 +135,7 @@ while running:
                 player_health -= 1  
                 life_list.pop()
                 if player_health == 0:
+
                     destroyed_sound.play()
 
     if (keys[pygame.K_a] or keys[pygame.K_LEFT]) and starship_x - 2 > 0:
