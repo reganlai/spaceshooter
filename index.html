@@ -3,19 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BudgetGainz</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>BudgetGainz</h1>
-    <h2>Trying to build muscles?</h2>
-    <h2>but don't have a lot of money or don't know what to eat?</h2>
+    <h1>BUDGET MEALS THAT GET YOU GAINS</h1>
 
-    <input type="radio" id="bulk" name="goal"> 
-    <label for="bulk">Bulk</label><br>
 
-    <input type="radio" id="cut" name="goal">
-    <label for="cut">Cut</label><br>
 
-    <button type="button">Click me</button>
+    <div class="info">
+        <div class="info__container">
+            <div class="info__card">
+                <h3>Are you...</h3>
+            </div>
+            
+            <div class="info__card">
+                <h3>Are you...</h3>
+            </div>
+            
+            <div class="info__card">
+                <h3>Your weight(lbs)</h3>
+            </div>
+
+            <div class="info__card">
+                <h3>Your Location</h3>
+            </div>
+            
+            <div class="info__card">
+                <h3>Budget/Week</h3>
+            </div>
+            
+            <div class="info__card">
+                <h3>Select a meal</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <div class="buttons__container">
+            <div class="buttons__card">
+                <input type="radio" id="bulk" name="goal" checked> 
+                <label for="bulk">Bulking</label><br>  
+            
+                <input type="radio" id="cut" name="goal">
+                <label for="cut">Cutting</label><br>
+            </div>
+
+            <div class="buttons__card">
+                <input type="radio" id="bulk" name="sex" checked> 
+                <label for="bulk">Male</label><br>  
+            
+                <input type="radio" id="cut" name="sex">
+                <label for="cut">Female</label><br>
+            </div>
+
+            <div class="buttons__card">
+                <input type="text" id="weight">
+            </div>
+
+            <select name="location" id="location">
+                <option value="volvo">California</option>
+                <option value="saab">Texas</option>
+                <option value="opel">New York</option>
+              </select>
+
+            <div class="buttons__card">
+                <input type="radio" id="cheap" name="amount" checked> 
+                <label for="bulk">$10-$20</label><br> 
+
+                <input type="radio" id="medium" name="amount"> 
+                <label for="bulk">$20-$30</label><br>  
+            
+                <input type="radio" id="expensive" name="amount">
+                <label for="cut">$30-$40</label><br>
+            </div>
+
+            <div class="buttons__card">
+                <input type="radio" id="breakfast" name="meal" checked> 
+                <label for="bulk">Breakfast</label><br> 
+
+                <input type="radio" id="lunch" name="meal"> 
+                <label for="bulk">Lunch</label><br>  
+            
+                <input type="radio" id="dinner" name="meal">
+                <label for="cut">Dinner</label><br>
+            </div>
+        </div>
+    </div>
+
+    <div class="generate">
+        <h3>Generate Meal According To Real-Time Food Prices</h3>
+        <button type="button" id="generate">Generate</button>
+    </div>
 </body>
 </html>
